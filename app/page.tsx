@@ -16,6 +16,12 @@ interface Task {
 }
 
 export default function Home() {
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([
+    { name: "Pawan Kumar", role: "Developer", bio: "Loves coding and coffee." },
+    { name: "Rashmi Chaudhary", role: "Developer", bio: "Passionate about UI/UX." },
+    { name: "Prem Raja Babu", role: "Project Manager", bio: "Ensures smooth workflow." },
+  ]);
+
   const [tasks, setTasks] = useState<Task[]>([]);
   const [searchValue, setSearchValue] = useState("");
   const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
@@ -147,6 +153,22 @@ export default function Home() {
       </header>
 
       <main className="p-6">
+        {/* Team Section */}
+        <section id="team-section" className="mb-12">
+          <h2 className="text-xl font-semibold mb-6 text-center">Meet the Team</h2>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {teamMembers.map((member, index) => (
+              <div key={index} className="bg-white p-6 rounded-lg shadow-md border border-gray-300">
+                <h3 className="text-lg font-bold">{member.name}</h3>
+                <p>
+                  <strong>Role:</strong> {member.role}
+                </p>
+                <p>{member.bio}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* Task Section */}
         <section id="task-section">
           <h2 className="text-xl font-semibold mb-6 text-center">Task Management</h2>
