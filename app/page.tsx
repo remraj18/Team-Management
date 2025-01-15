@@ -2,12 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 
-interface TeamMember {
-  name: string;
-  role: string;
-  bio: string;
-}
-
 interface Task {
   title: string;
   desc: string;
@@ -16,12 +10,6 @@ interface Task {
 }
 
 export default function Home() {
-  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([
-    { name: "Pawan Kumar", role: "Developer", bio: "Loves coding and coffee." },
-    { name: "Rashmi Chaudhary", role: "Developer", bio: "Passionate about UI/UX." },
-    { name: "Prem Raja Babu", role: "Project Manager", bio: "Ensures smooth workflow." },
-  ]);
-
   const [tasks, setTasks] = useState<Task[]>([]);
   const [searchValue, setSearchValue] = useState("");
   const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
@@ -141,7 +129,7 @@ export default function Home() {
   return (
     <div className="bg-gray-100 font-sans text-gray-800 min-h-screen">
       <header className="flex justify-between items-center bg-green-600 text-white px-4 py-3 shadow-md">
-        <h1 className="text-2xl font-bold tracking-wide">Team and Task Management</h1>
+        <h1 className="text-2xl font-bold tracking-wide">Task Management</h1>
         <nav className="flex space-x-4">
           <button
             className="bg-white text-green-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-200"
@@ -153,22 +141,6 @@ export default function Home() {
       </header>
 
       <main className="p-6">
-        {/* Team Section */}
-        <section id="team-section" className="mb-12">
-          <h2 className="text-xl font-semibold mb-6 text-center">Meet the Team</h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {teamMembers.map((member, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-md border border-gray-300">
-                <h3 className="text-lg font-bold">{member.name}</h3>
-                <p>
-                  <strong>Role:</strong> {member.role}
-                </p>
-                <p>{member.bio}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
         {/* Task Section */}
         <section id="task-section">
           <h2 className="text-xl font-semibold mb-6 text-center">Task Management</h2>
@@ -193,7 +165,6 @@ export default function Home() {
           {/* Task Form */}
           {isFormVisible && (
             <form
-              ref={formRef}
               className="bg-white p-6 rounded-lg shadow-lg max-w-lg mx-auto mb-6"
               onSubmit={handleSaveTask}
             >
